@@ -77,8 +77,11 @@ public class DriveSubsystem extends SubsystemBase {
     // We need to invert one side of the drivetrain so that positive voltages
     // result in both sides moving forward. Depending on how your robot's
     // gearbox is constructed, you might have to invert the left side instead.
-    m_rearLeft.setInverted(true);
+    m_frontRight.setInverted(true);
     m_rearRight.setInverted(true);
+    m_frontLeft.setInverted(false);
+    m_rearLeft.setInverted(false);
+    SmartDashboard.putData("Drive Subsystem", this);
   }
 
   @Override
@@ -116,9 +119,9 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative) {
     if (fieldRelative) {
-      m_drive.driveCartesian(ySpeed, xSpeed, rot, m_gyro.getRotation2d());
+      m_drive.driveCartesian(xSpeed, ySpeed, rot, m_gyro.getRotation2d());
     } else {
-      m_drive.driveCartesian(ySpeed, xSpeed, rot);
+      m_drive.driveCartesian(xSpeed, ySpeed, rot);
     }
   }
 
