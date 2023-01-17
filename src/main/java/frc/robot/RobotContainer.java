@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj2.command.MecanumControllerCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import java.util.List;
+import edu.wpi.first.wpilibj.PowerDistribution;
 
 /*
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -39,6 +40,8 @@ public class RobotContainer {
 
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
+
+  private PowerDistribution pdp = new PowerDistribution();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -128,5 +131,8 @@ public class RobotContainer {
 
     // Run path following command, then stop at the end.
     return mecanumControllerCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false));
+  }
+  public PowerDistribution getPdp() {
+    return this.pdp;
   }
 }

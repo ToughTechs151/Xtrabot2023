@@ -20,6 +20,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+  private DataLogging datalog;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -29,11 +30,11 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    datalog = DataLogging.getInstance();
     m_robotContainer = new RobotContainer();
     // Starts recording to data log
-    DataLogManager.start();
     // Record both DS control and joystick data
-    DriverStation.startDataLog(DataLogManager.getLog());
+    datalog.dataLogRobotContainerInit(this.m_robotContainer);
   }
 
   /**
