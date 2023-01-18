@@ -80,6 +80,7 @@ public class DriveSubsystem extends SubsystemBase {
     this.frontLeft.setInverted(false);
     this.rearLeft.setInverted(false);
     SmartDashboard.putData("Drive Subsystem", this);
+    SmartDashboard.putData("Mecanum Drive", this.drive);
   }
 
   @Override
