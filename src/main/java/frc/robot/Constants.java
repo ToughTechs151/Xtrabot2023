@@ -8,6 +8,7 @@ import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.MecanumDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
+import java.util.List;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -19,76 +20,95 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
  */
 public final class Constants {
 
+  private static final String UTILITY_CLASS = "Utility class";
+
   private Constants() {
-    throw new IllegalStateException("Utility class");
+    throw new IllegalStateException(UTILITY_CLASS);
   }
 
   public static final class DriveConstants {
-    public static final int kFrontLeftMotorPort = 0;
-    public static final int kRearLeftMotorPort = 1;
-    public static final int kFrontRightMotorPort = 2;
-    public static final int kRearRightMotorPort = 3;
 
-    public static final int[] kFrontLeftEncoderPorts = new int[] {0, 1};
-    public static final int[] kRearLeftEncoderPorts = new int[] {2, 3};
-    public static final int[] kFrontRightEncoderPorts = new int[] {4, 5};
-    public static final int[] kRearRightEncoderPorts = new int[] {6, 7};
+    private DriveConstants() {
+      throw new IllegalStateException(UTILITY_CLASS);
+    }
 
-    public static final boolean kFrontLeftEncoderReversed = false;
-    public static final boolean kRearLeftEncoderReversed = true;
-    public static final boolean kFrontRightEncoderReversed = false;
-    public static final boolean kRearRightEncoderReversed = true;
+    public static final int FRONT_LEFT_MOTOR_PORT = 0;
+    public static final int REAR_LEFT_MOTOR_PORT = 1;
+    public static final int FRONT_RIGHT_MOTOR_PORT = 2;
+    public static final int REAR_RIGHT_MOTOR_PORT = 3;
 
-    public static final double kTrackWidth = 0.5;
+    public static final List<Integer> FRONT_LEFT_ENCODER_PORTS = List.of(0, 1);
+    public static final List<Integer> REAR_LEFT_ENCODER_PORTS = List.of(2, 3);
+    public static final List<Integer> FRONT_RIGHT_ENCODER_PORTS = List.of(4, 5);
+    public static final List<Integer> REAR_RIGHT_ENCODER_PORTS = List.of(6, 7);
+
+    public static final boolean FRONT_LEFT_ENCODER_REVERSED = false;
+    public static final boolean REAR_LEFT_ENCODER_REVERSED = true;
+    public static final boolean FRONT_RIGHT_ENCODER_REVERSED = false;
+    public static final boolean REAR_RIGHT_ENCODER_REVERSED = true;
+
+    public static final double TRACK_WIDTH = 0.5;
     // Distance between centers of right and left wheels on robot
-    public static final double kWheelBase = 0.7;
+    public static final double WHEEL_BASE = 0.7;
     // Distance between centers of front and back wheels on robot
 
-    public static final MecanumDriveKinematics kDriveKinematics =
+    public static final MecanumDriveKinematics DRIVE_KINEMATICS =
         new MecanumDriveKinematics(
-            new Translation2d(kWheelBase / 2, kTrackWidth / 2),
-            new Translation2d(kWheelBase / 2, -kTrackWidth / 2),
-            new Translation2d(-kWheelBase / 2, kTrackWidth / 2),
-            new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
+            new Translation2d(WHEEL_BASE / 2, TRACK_WIDTH / 2),
+            new Translation2d(WHEEL_BASE / 2, -TRACK_WIDTH / 2),
+            new Translation2d(-WHEEL_BASE / 2, TRACK_WIDTH / 2),
+            new Translation2d(-WHEEL_BASE / 2, -TRACK_WIDTH / 2));
 
-    public static final int kEncoderCPR = 1024;
-    public static final double kWheelDiameterMeters = 0.15;
-    public static final double kEncoderDistancePerPulse =
+    public static final int ENCODER_CPR = 1024;
+    public static final double WHEEL_DIAMETER_METERS = 0.15;
+    public static final double ENCODER_DISTANCE_PER_PULSE =
         // Assumes the encoders are directly mounted on the wheel shafts
-        (kWheelDiameterMeters * Math.PI) / (double) kEncoderCPR;
+        (WHEEL_DIAMETER_METERS * Math.PI) / (double) ENCODER_CPR;
 
     // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
-    // These characterization values MUST be determined either experimentally or theoretically
+    // These characterization values MUST be determined either experimentally or
+    // theoretically
     // for *your* robot's drive.
-    // The SysId tool provides a convenient method for obtaining these values for your robot.
-    public static final SimpleMotorFeedforward kFeedforward =
+    // The SysId tool provides a convenient method for obtaining these values for
+    // your robot.
+    public static final SimpleMotorFeedforward FEED_FORWARD =
         new SimpleMotorFeedforward(1, 0.8, 0.15);
 
     // Example value only - as above, this must be tuned for your drive!
-    public static final double kPFrontLeftVel = 0.5;
-    public static final double kPRearLeftVel = 0.5;
-    public static final double kPFrontRightVel = 0.5;
-    public static final double kPRearRightVel = 0.5;
+    public static final double PFRONT_LEFT_VEL = 0.5;
+    public static final double PREAR_LEFT_VEL = 0.5;
+    public static final double PFRONT_RIGHT_VEL = 0.5;
+    public static final double PREAR_RIGHT_VEL = 0.5;
   }
 
   public static final class OIConstants {
-    public static final int kDriverControllerPort = 0;
+
+    private OIConstants() {
+      throw new IllegalStateException(UTILITY_CLASS);
+    }
+
+    public static final int DRIVER_CONTROLLER_PORT = 0;
   }
 
   public static final class AutoConstants {
-    public static final double kMaxSpeedMetersPerSecond = 3;
-    public static final double kMaxAccelerationMetersPerSecondSquared = 3;
-    public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
-    public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
 
-    public static final double kPXController = 0.5;
-    public static final double kPYController = 0.5;
-    public static final double kPThetaController = 0.5;
+    private AutoConstants() {
+      throw new IllegalStateException(UTILITY_CLASS);
+    }
+
+    public static final double MAX_SPEED_METERS_PER_SECOND = 3;
+    public static final double MAX_ACCEL_METERS_PER_SECOND_SQUARED = 3;
+    public static final double MAX_ANGULAR_SPEED_RADIANS_PER_SEC = Math.PI;
+    public static final double MAX_ANGULAR_SPEED_RADIANS_PER_SEC_SQUARED = Math.PI;
+
+    public static final double PXCONTROLLER = 0.5;
+    public static final double PYCONTROLLER = 0.5;
+    public static final double PTHETA_CONTROLLER = 0.5;
 
     // Constraint for the motion profilied robot angle controller
-    public static final TrapezoidProfile.Constraints kThetaControllerConstraints =
+    public static final TrapezoidProfile.Constraints THETA_CONTROLLER_CONSTRAINTS =
         new TrapezoidProfile.Constraints(
-            kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
+            MAX_ANGULAR_SPEED_RADIANS_PER_SEC, MAX_ANGULAR_SPEED_RADIANS_PER_SEC_SQUARED);
   }
 
   // Run time options

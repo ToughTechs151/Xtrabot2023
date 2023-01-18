@@ -19,10 +19,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 
 public class DriveSubsystem extends SubsystemBase {
-  private final WPI_TalonSRX m_frontLeft = new WPI_TalonSRX(DriveConstants.kFrontLeftMotorPort);
-  private final WPI_TalonSRX m_rearLeft = new WPI_TalonSRX(DriveConstants.kRearLeftMotorPort);
-  private final WPI_TalonSRX m_frontRight = new WPI_TalonSRX(DriveConstants.kFrontRightMotorPort);
-  private final WPI_TalonSRX m_rearRight = new WPI_TalonSRX(DriveConstants.kRearRightMotorPort);
+  private final WPI_TalonSRX m_frontLeft = new WPI_TalonSRX(DriveConstants.FRONT_LEFT_MOTOR_PORT);
+  private final WPI_TalonSRX m_rearLeft = new WPI_TalonSRX(DriveConstants.REAR_LEFT_MOTOR_PORT);
+  private final WPI_TalonSRX m_frontRight = new WPI_TalonSRX(DriveConstants.FRONT_RIGHT_MOTOR_PORT);
+  private final WPI_TalonSRX m_rearRight = new WPI_TalonSRX(DriveConstants.REAR_RIGHT_MOTOR_PORT);
 
   private final MecanumDrive m_drive =
       new MecanumDrive(m_frontLeft, m_rearLeft, m_frontRight, m_rearRight);
@@ -30,30 +30,30 @@ public class DriveSubsystem extends SubsystemBase {
   // The front-left-side drive encoder
   private final Encoder m_frontLeftEncoder =
       new Encoder(
-          DriveConstants.kFrontLeftEncoderPorts[0],
-          DriveConstants.kFrontLeftEncoderPorts[1],
-          DriveConstants.kFrontLeftEncoderReversed);
+          DriveConstants.FRONT_LEFT_ENCODER_PORTS.get(0),
+          DriveConstants.FRONT_LEFT_ENCODER_PORTS.get(1),
+          DriveConstants.FRONT_LEFT_ENCODER_REVERSED);
 
   // The rear-left-side drive encoder
   private final Encoder m_rearLeftEncoder =
       new Encoder(
-          DriveConstants.kRearLeftEncoderPorts[0],
-          DriveConstants.kRearLeftEncoderPorts[1],
-          DriveConstants.kRearLeftEncoderReversed);
+          DriveConstants.REAR_LEFT_ENCODER_PORTS.get(0),
+          DriveConstants.REAR_LEFT_ENCODER_PORTS.get(1),
+          DriveConstants.REAR_LEFT_ENCODER_REVERSED);
 
   // The front-right--side drive encoder
   private final Encoder m_frontRightEncoder =
       new Encoder(
-          DriveConstants.kFrontRightEncoderPorts[0],
-          DriveConstants.kFrontRightEncoderPorts[1],
-          DriveConstants.kFrontRightEncoderReversed);
+          DriveConstants.FRONT_RIGHT_ENCODER_PORTS.get(0),
+          DriveConstants.FRONT_RIGHT_ENCODER_PORTS.get(1),
+          DriveConstants.FRONT_RIGHT_ENCODER_REVERSED);
 
   // The rear-right-side drive encoder
   private final Encoder m_rearRightEncoder =
       new Encoder(
-          DriveConstants.kRearRightEncoderPorts[0],
-          DriveConstants.kRearRightEncoderPorts[1],
-          DriveConstants.kRearRightEncoderReversed);
+          DriveConstants.REAR_RIGHT_ENCODER_PORTS.get(0),
+          DriveConstants.REAR_RIGHT_ENCODER_PORTS.get(1),
+          DriveConstants.REAR_RIGHT_ENCODER_REVERSED);
 
   // The gyro sensor
   private final Gyro m_gyro = new ADXRS450_Gyro();
@@ -61,17 +61,17 @@ public class DriveSubsystem extends SubsystemBase {
   // Odometry class for tracking robot pose
   MecanumDriveOdometry m_odometry =
       new MecanumDriveOdometry(
-          DriveConstants.kDriveKinematics,
+          DriveConstants.DRIVE_KINEMATICS,
           m_gyro.getRotation2d(),
           new MecanumDriveWheelPositions());
 
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
     // Sets the distance per pulse for the encoders
-    m_frontLeftEncoder.setDistancePerPulse(DriveConstants.kEncoderDistancePerPulse);
-    m_rearLeftEncoder.setDistancePerPulse(DriveConstants.kEncoderDistancePerPulse);
-    m_frontRightEncoder.setDistancePerPulse(DriveConstants.kEncoderDistancePerPulse);
-    m_rearRightEncoder.setDistancePerPulse(DriveConstants.kEncoderDistancePerPulse);
+    m_frontLeftEncoder.setDistancePerPulse(DriveConstants.ENCODER_DISTANCE_PER_PULSE);
+    m_rearLeftEncoder.setDistancePerPulse(DriveConstants.ENCODER_DISTANCE_PER_PULSE);
+    m_frontRightEncoder.setDistancePerPulse(DriveConstants.ENCODER_DISTANCE_PER_PULSE);
+    m_rearRightEncoder.setDistancePerPulse(DriveConstants.ENCODER_DISTANCE_PER_PULSE);
     // We need to invert one side of the drivetrain so that positive voltages
     // result in both sides moving forward. Depending on how your robot's
     // gearbox is constructed, you might have to invert the left side instead.
