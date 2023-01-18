@@ -13,7 +13,6 @@ import edu.wpi.first.math.kinematics.MecanumDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
@@ -56,7 +55,7 @@ public class DriveSubsystem extends SubsystemBase {
           DriveConstants.REAR_RIGHT_ENCODER_REVERSED);
 
   // The gyro sensor
-  private final Gyro gyro = new ADXRS450_Gyro();
+  private final ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
   // Odometry class for tracking robot pose
   MecanumDriveOdometry odometry =
@@ -81,6 +80,11 @@ public class DriveSubsystem extends SubsystemBase {
     this.rearLeft.setInverted(false);
     SmartDashboard.putData("Drive Subsystem", this);
     SmartDashboard.putData("Mecanum Drive", this.drive);
+    SmartDashboard.putData("FrontLeft", this.frontLeftEncoder);
+    SmartDashboard.putData("FrontRight", this.frontRightEncoder);
+    SmartDashboard.putData("RearLeft", this.rearLeftEncoder);
+    SmartDashboard.putData("RearRight", this.rearRightEncoder);
+    SmartDashboard.putData("Gyro", this.gyro);
   }
 
   @Override
