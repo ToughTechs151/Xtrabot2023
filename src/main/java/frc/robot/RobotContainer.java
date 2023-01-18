@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
-import frc.robot.Constants.OIConstants;
+import frc.robot.Constants.OIconstants;
 import frc.robot.subsystems.DriveSubsystem;
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class RobotContainer {
 
   private PowerDistribution pdp = new PowerDistribution();
   private XboxController m_driverController =
-      new XboxController(OIConstants.DRIVER_CONTROLLER_PORT);
+      new XboxController(OIconstants.DRIVER_CONTROLLER_PORT);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
