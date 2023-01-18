@@ -109,6 +109,7 @@ Temporary Items
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/snippets.*
 
 ### Windows ###
 # Windows thumbnail cache files
@@ -160,3 +161,21 @@ bin/
 
 # Simulation GUI and other tools window save file
 *-window.json
+
+# Ignore Splash Screen txt files
+src/main/resources/*.txt
+
+# Robot deploy txt files
+src/main/deploy/*.txt
+
+# NetworkTable Persistence files
+networktables.ini
+networktables.ini.bak
+
+# Data Log Files
+FRC_202*
+FRC_TBD*
+datalogtool.json
+
+# Simulation Gui files
+simgui*.json
