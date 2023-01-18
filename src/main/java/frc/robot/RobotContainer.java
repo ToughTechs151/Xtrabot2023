@@ -35,11 +35,11 @@ import java.util.List;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private final DriveSubsystem robotDrive = new DriveSubsystem();
 
   private PowerDistribution pdp = new PowerDistribution();
-  private XboxController m_driverController =
-      new XboxController(OIconstants.DRIVER_CONTROLLER_PORT);
+  private XboxController driverController = new XboxController(OIconstants.DRIVER_CONTROLLER_PORT);
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
@@ -48,17 +48,17 @@ public class RobotContainer {
 
     // Configure default commands
     // Set the default drive command to split-stick arcade drive
-    m_robotDrive.setDefaultCommand(
+    this.robotDrive.setDefaultCommand(
         // A split-stick arcade command, with forward/backward controlled by the left
         // hand, and turning controlled by the right.
         new RunCommand(
             () ->
-                m_robotDrive.drive(
-                    -m_driverController.getLeftY(),
-                    -m_driverController.getRightX(),
-                    -m_driverController.getLeftX(),
+                this.robotDrive.drive(
+                    -this.driverController.getLeftY(),
+                    -this.driverController.getRightX(),
+                    -this.driverController.getLeftX(),
                     false),
-            m_robotDrive));
+            this.robotDrive));
   }
 
   /**
@@ -70,9 +70,9 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // Add bindings here
     // Drive at half speed when the right bumper is held
-    new JoystickButton(m_driverController, Button.kRightBumper.value)
-        .onTrue(new InstantCommand(() -> m_robotDrive.setMaxOutput(0.5)))
-        .onFalse(new InstantCommand(() -> m_robotDrive.setMaxOutput(1)));
+    new JoystickButton(this.driverController, Button.kRightBumper.value)
+        .onTrue(new InstantCommand(() -> this.robotDrive.setMaxOutput(0.5)))
+        .onFalse(new InstantCommand(() -> this.robotDrive.setMaxOutput(1)));
   }
 
   /**
@@ -103,7 +103,7 @@ public class RobotContainer {
     MecanumControllerCommand mecanumControllerCommand =
         new MecanumControllerCommand(
             exampleTrajectory,
-            m_robotDrive::getPose,
+            this.robotDrive::getPose,
             DriveConstants.FEED_FORWARD,
             DriveConstants.DRIVE_KINEMATICS,
 
@@ -121,15 +121,16 @@ public class RobotContainer {
             new PIDController(DriveConstants.PREAR_LEFT_VEL, 0, 0),
             new PIDController(DriveConstants.PFRONT_RIGHT_VEL, 0, 0),
             new PIDController(DriveConstants.PREAR_RIGHT_VEL, 0, 0),
-            m_robotDrive::getCurrentWheelSpeeds,
-            m_robotDrive::setDriveMotorControllersVolts, // Consumer for the output motor voltages
-            m_robotDrive);
+            this.robotDrive::getCurrentWheelSpeeds,
+            this.robotDrive
+                ::setDriveMotorControllersVolts, // Consumer for the output motor voltages
+            this.robotDrive);
 
     // Reset odometry to the starting pose of the trajectory.
-    m_robotDrive.resetOdometry(exampleTrajectory.getInitialPose());
+    this.robotDrive.resetOdometry(exampleTrajectory.getInitialPose());
 
     // Run path following command, then stop at the end.
-    return mecanumControllerCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false));
+    return mecanumControllerCommand.andThen(() -> this.robotDrive.drive(0, 0, 0, false));
   }
 
   /**
