@@ -55,8 +55,8 @@ public class RobotContainer {
             () ->
                 this.robotDrive.drive(
                     -this.driverController.getLeftY(),
-                    -this.driverController.getRightX(),
                     -this.driverController.getLeftX(),
+                    -this.driverController.getRightX(),
                     false),
             this.robotDrive));
   }
